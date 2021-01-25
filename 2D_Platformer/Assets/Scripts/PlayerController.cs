@@ -14,6 +14,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-       
+        if(Input.GetKey(KeyCode.A))
+        {
+            rigid.velocity = new Vector2(-5,rigid.velocity.y);
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            rigid.velocity = new Vector2(5, rigid.velocity.y);
+        }
+
+        if(Input.GetKey(KeyCode.Space))
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, 3);
+        }
     }
 }
