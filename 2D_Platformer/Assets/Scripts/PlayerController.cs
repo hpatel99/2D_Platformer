@@ -17,14 +17,17 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.A))
         {
             rigid.velocity = new Vector2(-5,rigid.velocity.y);
+            transform.localScale = new Vector2(-1f, 1f);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             rigid.velocity = new Vector2(5, rigid.velocity.y);
+            transform.localScale = new Vector2(1f, 1f);
+
         }
 
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             rigid.velocity = new Vector2(rigid.velocity.x, 3);
         }
