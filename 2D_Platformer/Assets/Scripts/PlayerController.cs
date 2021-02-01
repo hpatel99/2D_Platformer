@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rigid;
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -18,18 +21,17 @@ public class PlayerController : MonoBehaviour
         {
             rigid.velocity = new Vector2(-5,rigid.velocity.y);
             transform.localScale = new Vector2(-1f, 1f);
+            anim.SetBool("running", true);
         }
-
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             rigid.velocity = new Vector2(5, rigid.velocity.y);
             transform.localScale = new Vector2(1f, 1f);
-
+            anim.SetBool("running", true);
         }
-
-        if (Input.GetKey(KeyCode.Space))
+        else 
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, 3);
+            anim.SetBool("running", false);
         }
     }
 }
