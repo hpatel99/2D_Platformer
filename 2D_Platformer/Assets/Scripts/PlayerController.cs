@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
-            rigid.velocity = new Vector2(-5,rigid.velocity.y);
+            rigid.velocity = new Vector2(-5, rigid.velocity.y);
             transform.localScale = new Vector2(-1f, 1f);
             anim.SetBool("running", true);
         }
@@ -29,9 +29,15 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector2(1f, 1f);
             anim.SetBool("running", true);
         }
-        else 
+        else
         {
             anim.SetBool("running", false);
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, 3f) ;
+
         }
     }
 }
