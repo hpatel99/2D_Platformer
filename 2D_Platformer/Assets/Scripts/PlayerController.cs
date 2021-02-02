@@ -2,10 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum State
+{
+    Idle,
+    Running,
+    JumpingUp,
+    FallingDown
+}
+
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rigid;
     private Animator anim;
+    private State CurrState;
 
     // Start is called before the first frame update
     void Start()
