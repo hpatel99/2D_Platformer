@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         {
             rigid.velocity = new Vector2(hDirection*RunSpeed, rigid.velocity.y);
             transform.localScale = new Vector2(-hDirection >0 ? -1f : 1f, 1f);
-            anim.SetBool("running", true);
+            anim.SetInteger("State", 1);
         }
         else
         {
