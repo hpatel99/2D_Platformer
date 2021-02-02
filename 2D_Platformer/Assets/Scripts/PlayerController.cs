@@ -29,16 +29,10 @@ public class PlayerController : MonoBehaviour
     {
         float hDirection = Input.GetAxis("Horizontal");
 
-        if (Input.GetKey(KeyCode.A))
+        if (hDirection != 0f)
         {
             rigid.velocity = new Vector2(hDirection*RunSpeed, rigid.velocity.y);
-            transform.localScale = new Vector2(-1f, 1f);
-            anim.SetBool("running", true);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            rigid.velocity = new Vector2(5, rigid.velocity.y);
-            transform.localScale = new Vector2(1f, 1f);
+            transform.localScale = new Vector2(-hDirection >0 ? -1f : 1f, 1f);
             anim.SetBool("running", true);
         }
         else
