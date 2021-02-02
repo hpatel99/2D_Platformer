@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigid;
     private Animator anim;
     private State CurrState;
+    private float RunSpeed = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +27,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        float hDirection = Input.GetAxis("Horizontal");
+
         if (Input.GetKey(KeyCode.A))
         {
-            rigid.velocity = new Vector2(-5, rigid.velocity.y);
+            rigid.velocity = new Vector2(hDirection*RunSpeed, rigid.velocity.y);
             transform.localScale = new Vector2(-1f, 1f);
             anim.SetBool("running", true);
         }
