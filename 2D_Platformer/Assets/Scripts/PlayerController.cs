@@ -38,6 +38,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             rigid.velocity = new Vector2(rigid.velocity.x, 3f) ;
+        }
+
+        //in the end we will update the statemachine of animation depending of the velocity of the rigidbody
+        UpdateAimationStates();
+    }
+
+    private void UpdateAimationStates()
+    {
+        
     }
 
     private void UpdateRigidbodyVelocity(float hDirectionalinput)
