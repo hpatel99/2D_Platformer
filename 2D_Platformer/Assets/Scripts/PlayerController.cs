@@ -50,9 +50,10 @@ public class PlayerController : MonoBehaviour
         float yVelocity = rigid.velocity.y;
         float xVelocity = rigid.velocity.x;
 
-        if(Mathf.Abs(yVelocity) > 1f)//either we are falling or jumping
+        if(Mathf.Abs(yVelocity) > Mathf.Epsilon)//either we are falling or jumping
         {
-                CurrState = yVelocity>0 ? State.JumpingUp:State.FallingDown;
+            CurrState = yVelocity>0f ? State.JumpingUp:State.FallingDown;
+
         }
         else if(Mathf.Abs(xVelocity)>2f)
         {
