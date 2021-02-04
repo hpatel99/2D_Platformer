@@ -47,11 +47,14 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateAimationStates()
     {
-        if(CurrState ==State.JumpingUp)
-        {
+        float yVelocity = rigid.velocity.y;
+        float xVelocity = rigid.velocity.x;
 
+        if(Mathf.Abs(yVelocity) > 1f)//either we are falling or jumping
+        {
+                CurrState = yVelocity>0 ? State.JumpingUp:State.FallingDown;
         }
-        else if(Mathf.Abs(rigid.velocity.x)>2f)
+        else if(Mathf.Abs(xVelocity)>2f)
         {
             CurrState = State.Running;
         }
@@ -59,24 +62,19 @@ public class PlayerController : MonoBehaviour
         {
             CurrState = State.Idle;
         }
-
+        anim.SetInteger("State",(int)CurrState);
     }
 
     private void UpdateRigidbodyVelocity(float hDirectionalinput)
     {
         if (Input.GetKey(KeyCode.Space) && collider.IsTouchingLayers(groundLayer))
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, 3f);
+            rigid.velocity = new Vector2(rigid.velocity.x, 6f);
         }
         else if (hDirectionalinput != 0f)
         {
             rigid.velocity = new Vector2(hDirectionalinput * RunSpeed, rigid.velocity.y);
             transform.localScale = new Vector2(-hDirectionalinput > 0 ? -1f : 1f, 1f);
-            anim.SetInteger("State", 1);
-        }
-        else
-        {
-            anim.SetInteger("State", 0);
         }
     }
 }
