@@ -11722,7 +11722,7 @@ GameObject:
   - component: {fileID: 1800794008}
   - component: {fileID: 1800794010}
   - component: {fileID: 1800794009}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Forground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
