@@ -53,7 +53,11 @@ public class PlayerController : MonoBehaviour
         if(Mathf.Abs(yVelocity) > Mathf.Epsilon)//either we are falling or jumping
         {
             CurrState = yVelocity>0f ? State.JumpingUp:State.FallingDown;
-
+            
+            if(CurrState == State.FallingDown && collider.IsTouchingLayers(groundLayer))
+            {
+                CurrState = State.Idle;
+            }
         }
         else if(Mathf.Abs(xVelocity)>2f)
         {
