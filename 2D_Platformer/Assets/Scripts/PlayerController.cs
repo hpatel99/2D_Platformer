@@ -16,11 +16,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigid;
     private Animator anim;
     private State CurrState;
-    private float RunSpeed = 5;
     private float hDirectionalinput;
     private Collider2D collider;
     [SerializeField]
     private LayerMask groundLayer;
+    [SerializeField]
+    private float RunSpeed = 5;
+    [SerializeField]
+    private float JumpForce = 6;
 
     // Start is called before the first frame update
     void Start()
@@ -38,8 +41,6 @@ public class PlayerController : MonoBehaviour
 
         // Update the Movement velocity. Do i want to call update every frame????
         UpdateRigidbodyVelocity(hDirectionalinput);
-
-       
 
         //in the end we will update the statemachine of animation depending of the velocity of the rigidbody
         UpdateAimationStates();
@@ -74,7 +75,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && collider.IsTouchingLayers(groundLayer))
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, 6f);
+            rigid.velocity = new Vector2(rigid.velocity.x, JumpForce);
         }
         else if (hDirectionalinput != 0f)
         {
