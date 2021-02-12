@@ -48,6 +48,10 @@ public class PlayerController : MonoBehaviour
         //Update the horizontal input
         hDirectionalinput = Input.GetAxis("Horizontal");
 
+        //update Score
+        UpdateScoreOnTally(Score);
+
+
         // Update the Movement velocity. Do i want to call update every frame????
         UpdateRigidbodyVelocity(hDirectionalinput);
 
@@ -62,10 +66,13 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             ++Score;
-            ScoreTally.text = Score.ToString();
         }
     }
 
+    private void UpdateScoreOnTally(int Score)
+    {
+        ScoreTally.text = Score.ToString();
+    }
 
     private void UpdateAimationStates()
     {
