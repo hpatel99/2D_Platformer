@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum State
 {
@@ -18,16 +19,24 @@ public class PlayerController : MonoBehaviour
     private State CurrState;
     private float hDirectionalinput;
     private Collider2D collider;
+    private int Score;
+
     [SerializeField]
     private LayerMask groundLayer;
     [SerializeField]
     private float RunSpeed = 5;
     [SerializeField]
     private float JumpForce = 6;
+    [SerializeField]
+    private Text ScoreTally;
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        Score = 0;
+
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         collider = GetComponent<Collider2D>();
@@ -45,6 +54,18 @@ public class PlayerController : MonoBehaviour
         //in the end we will update the statemachine of animation depending of the velocity of the rigidbody
         UpdateAimationStates();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.CompareTag("Collectable"))
+        {
+            Destroy(collision.gameObject);
+            ++Score;
+            ScoreTally.text = Score.ToString();
+        }
+    }
+
 
     private void UpdateAimationStates()
     {
