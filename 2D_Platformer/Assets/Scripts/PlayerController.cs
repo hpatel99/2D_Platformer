@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Collectable"))
         {
             Destroy(collision.gameObject);
-            ++Score;
+            Score += collision.gameObject.GetComponent<CollectableProperty>().Points ;
         }
     }
 
